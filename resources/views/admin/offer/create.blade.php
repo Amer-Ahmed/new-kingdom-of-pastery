@@ -260,7 +260,6 @@
           append += '<a style="float: right;" href="javascript:void(0);" class="btn btn-danger block" onclick="removeBlock('+rmoveID+')"><i class="fas fa-trash-alt mr-2"></i>Delete Address</a>';
           append += '</div>';
           append +=  '</div>';
-          append += '<hr style="border-top: 1px solid #343a40;">';
 
           rmoveID++;
       $("#newAddress").last().append(append);

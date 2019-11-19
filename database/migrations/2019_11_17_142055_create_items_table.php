@@ -21,8 +21,10 @@ class CreateItemsTable extends Migration
             $table->string('image');
             $table->longText('description_ar')->nullable();
             $table->longText('description_en')->nullable();
-            $table->double('price', 8, 2);
-            $table->double('calories', 8, 2)->nullable();
+            $table->double('price_ar', 8, 2);
+            $table->double('price_en', 8, 2);
+            $table->double('calories_ar', 8, 2)->nullable();
+            $table->double('calories_en', 8, 2)->nullable();
             $table->timestamps();
         });
     }

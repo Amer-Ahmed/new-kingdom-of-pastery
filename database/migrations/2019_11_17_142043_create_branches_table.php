@@ -22,8 +22,9 @@ class CreateBranchesTable extends Migration
             $table->integer('service_type_id');
             $table->longText('description_ar')->nullable();
             $table->longText('description_en')->nullable();
-            $table->string('address');
-            $table->json('phones');
+            $table->LongText('address_description')->nullable();
+            $table->string('first_phone');
+            $table->string('second_phone');
             $table->timestamps();
         });
     }

@@ -5,11 +5,11 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Customers</h1>
+          <h1>Branches</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="{{route('admin.customer.create')}}">Add New Customer</a></li>
+            <li class="breadcrumb-item"><a href="{{route('admin.branch.create')}}">Add New Branch</a></li>
           </ol>
         </div>
       </div>
@@ -21,9 +21,9 @@
         <table id="example1" class="table table-bordered table-striped">
           <thead>
             <tr>
-              <th>Image</th>
-              <th>Customer Name</th>
-              <th>Email</th>
+              <th>Name</th>
+              <th>Service Type</th>
+              <th>Address</th>
               <th><i class="fas fa-cogs"></i></th>
             </tr>
           </thead>
