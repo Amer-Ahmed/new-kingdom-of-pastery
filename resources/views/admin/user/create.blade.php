@@ -19,57 +19,72 @@
     <div class="container-fluid">
           <div class="card card-primary">
             <div class="card-header">
-              <h3 class="card-title">Please enter the following information</h3>
+              <h3 class="card-title">Personal information</h3>
             </div>
-            <form role="form">
+            <form role="form" autocomplete="off">
               <div class="card-body">
                 <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-md-4">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">First Name</label>
-                      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                      <label for="exampleInputFirstName">First Name</label>
+                      <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Enter First Name">
                     </div>
                   </div>
-                  <div class="col-md-6">
+                  <div class="col-md-4">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Last Name</label>
-                      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                      <label for="exampleInputMiddleName">Middle Name</label>
+                      <input type="text" class="form-control" id="exampleInputMiddleName" placeholder="Enter Middle Name">
                     </div>
                   </div>
-                </div>
-                <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-md-4">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Email address</label>
-                      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Phone Number</label>
-                      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                      <label for="exampleInputLastName">Last Name</label>
+                      <input type="text" class="form-control" id="exampleInputLastName" placeholder="Enter Last Name">
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">City</label>
-                      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                      <label for="exampleInputEmail">Email</label>
+                      <input type="email" class="form-control" id="exampleInputEmail" placeholder="Enter email">
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Area</label>
-                      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                      <label for="exampleInputRole">Role</label>
+                      <select class="form-control" id="exampleInputRole">
+                        <option>role 1</option>
+                        <option>role 2</option>
+                      </select>
                     </div>
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-12">
+                  <div class="col-md-6">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Address</label>
-                      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                      <label for="exampleInputPassword">Password</label>
+                      <input type="password" class="form-control" id="exampleInputPassword" placeholder="Enter Password">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="exampleInputConfirmPassword">Confirm Password</label>
+                      <input type="password" class="form-control" id="exampleInputConfirmPassword" placeholder="Enter Confirm Password">
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="exampleInputFirstPhone">First Phone</label>
+                      <input type="text" class="form-control" id="exampleInputFirstPhone" placeholder="Enter First Phone">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="exampleInputSecondPhone">Second Phone</label>
+                      <input type="text" class="form-control" id="exampleInputSecondPhone" placeholder="Enter Second Phone">
                     </div>
                   </div>
                 </div>
@@ -89,6 +104,7 @@
                     </div>
                   </div>
                 </div>
+              </div>
               <div class="card-footer">
                 <button type="submit" class="btn btn-primary float-right">Submit</button>
               </div>

@@ -7,18 +7,13 @@
         <div class="col-sm-6">
           <h1>Orders</h1>
         </div>
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="{{route('admin.order.create')}}">Add New Order</a></li>
-          </ol>
-        </div>
       </div>
     </div>
   </section>
   <section class="content">
     <div class="container-fluid">
       <div class="card-body">
-        <table id="example1" class="table table-bordered table-striped">
+        <table class="table table-bordered table-striped dataTable">
           <thead>
             <tr>
               <th>Order #</th>

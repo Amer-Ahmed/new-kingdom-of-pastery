@@ -18,7 +18,7 @@
   <section class="content">
     <div class="container-fluid">
       <div class="card-body">
-        <table id="example1" class="table table-bordered table-striped">
+        <table class="table table-bordered table-striped dataTable">
           <thead>
             <tr>
               <th>Name</th>
