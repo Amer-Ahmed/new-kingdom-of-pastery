@@ -54,8 +54,8 @@
                     <div class="form-group">
                       <label for="exampleInputRole">Role</label>
                       <select class="form-control" id="exampleInputRole">
-                        <option>role 1</option>
-                        <option>role 2</option>
+                        <option>admin</option>
+                        <option>cashier</option>
                       </select>
                     </div>
                   </div>
