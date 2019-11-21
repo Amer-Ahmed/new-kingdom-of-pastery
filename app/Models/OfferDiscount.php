@@ -4,12 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Extra extends Model
+class OfferDiscount extends Model
 {
     protected $guarded = [];
 
-    public function items()
+    public function offer()
     {
-        return $this->belongsToMany('App\Models\Item');
+    	return $this->belongsTo('App\Models\Offer');
     }
 }

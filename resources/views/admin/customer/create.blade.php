@@ -44,19 +44,10 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col-md-6">
+                  <div class="col-md-12">
                     <div class="form-group">
                       <label for="exampleInputEmail">Email</label>
                       <input type="email" class="form-control" id="exampleInputEmail" placeholder="Enter email">
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <label for="exampleInputRole">Role</label>
-                      <select class="form-control" id="exampleInputRole">
-                        <option>role 1</option>
-                        <option>role 2</option>
-                      </select>
                     </div>
                   </div>
                 </div>
