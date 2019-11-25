@@ -21,25 +21,26 @@
             <div class="card-header">
               <h3 class="card-title">Personal information</h3>
             </div>
-            <form role="form" autocomplete="off">
+            <form action="{{ route('admin.user.store') }}" method="POST" enctype="multipart/form-data" id="add-user">
+              @csrf
               <div class="card-body">
                 <div class="row">
                   <div class="col-md-4">
                     <div class="form-group">
                       <label for="exampleInputFirstName">First Name</label>
-                      <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Enter First Name">
+                      <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Enter First Name" name="first_name">
                     </div>
                   </div>
                   <div class="col-md-4">
                     <div class="form-group">
                       <label for="exampleInputMiddleName">Middle Name</label>
-                      <input type="text" class="form-control" id="exampleInputMiddleName" placeholder="Enter Middle Name">
+                      <input type="text" class="form-control" id="exampleInputMiddleName" placeholder="Enter Middle Name" name="middle_name">
                     </div>
                   </div>
                   <div class="col-md-4">
                     <div class="form-group">
                       <label for="exampleInputLastName">Last Name</label>
-                      <input type="text" class="form-control" id="exampleInputLastName" placeholder="Enter Last Name">
+                      <input type="text" class="form-control" id="exampleInputLastName" placeholder="Enter Last Name" name="last_name">
                     </div>
                   </div>
                 </div>
@@ -47,15 +48,16 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="exampleInputEmail">Email</label>
-                      <input type="email" class="form-control" id="exampleInputEmail" placeholder="Enter email">
+                      <input type="email" class="form-control" id="exampleInputEmail" placeholder="Enter email" name="email">
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="exampleInputRole">Role</label>
-                      <select class="form-control" id="exampleInputRole">
-                        <option>admin</option>
-                        <option>cashier</option>
+                      <select class="select2" multiple="multiple" data-placeholder="Select a Role" style="width: 100%;" name="roles[]">
+                        @foreach($roles as $role)
+                        <option value="{{$role->id}}">{{$role->name}}</option>
+                        @endforeach
                       </select>
                     </div>
                   </div>
@@ -63,14 +65,14 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="exampleInputPassword">Password</label>
-                      <input type="password" class="form-control" id="exampleInputPassword" placeholder="Enter Password">
+                      <label for="password">Password</label>
+                      <input type="password" class="form-control" id="password" placeholder="Enter Password" name="password">
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="exampleInputConfirmPassword">Confirm Password</label>
-                      <input type="password" class="form-control" id="exampleInputConfirmPassword" placeholder="Enter Confirm Password">
+                      <input type="password" class="form-control" id="exampleInputConfirmPassword" placeholder="Enter Confirm Password" name="password_confirmation">
                     </div>
                   </div>
                 </div>
@@ -78,13 +80,13 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="exampleInputFirstPhone">First Phone</label>
-                      <input type="text" class="form-control" id="exampleInputFirstPhone" placeholder="Enter First Phone">
+                      <input type="text" class="form-control" id="exampleInputFirstPhone" placeholder="Enter First Phone" name="first_phone">
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="exampleInputSecondPhone">Second Phone</label>
-                      <input type="text" class="form-control" id="exampleInputSecondPhone" placeholder="Enter Second Phone">
+                      <input type="text" class="form-control" id="exampleInputSecondPhone" placeholder="Enter Second Phone" name="second_phone">
                     </div>
                   </div>
                 </div>
@@ -94,7 +96,7 @@
                       <label for="exampleInputFile">Image</label>
                       <div class="input-group">
                         <div class="custom-file">
-                          <input type="file" class="custom-file-input" id="exampleInputFile">
+                          <input type="file" class="custom-file-input" id="exampleInputFile" name="image">
                           <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                         </div>
                         <div class="input-group-append">
@@ -114,3 +116,28 @@
   </section>
 </div>
 @endsection
+@push('js')
+<script>
+  $(document).ready(() => {
+    $('#add-user').validate({
+        rules: {
+          first_name: "required",
+          last_name: "required",
+          email: {
+            required: true,
+            email: true
+          },
+          password : {
+            required: true,
+            minlength : 4
+          },
+          password_confirmation : {
+            required: true,
+            minlength : 4,
+            equalTo : "#password"
+          }
+        }
+    });
+  });
+</script>
+@endpush

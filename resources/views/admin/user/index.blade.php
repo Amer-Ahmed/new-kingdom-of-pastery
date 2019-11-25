@@ -18,22 +18,44 @@
   <section class="content">
     <div class="container-fluid">
       <div class="card-body">
-        <table id="example1" class="table table-bordered table-striped">
+        <table class="table table-bordered table-striped dataTable">
           <thead>
             <tr>
-              <th>Image</th>
               <th>User Name</th>
               <th>Email</th>
+              <th>Role</th>
               <th>Action</th>
             </tr>
           </thead>
           <tbody>
+            @foreach ($users as  $user)
               <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td> </td>
+                <td>{{$user->name}}</td>
+                <td>{{$user->email}}</td>
+                <td>
+                  @foreach($user->roles as $role)
+                    {{$role->name}}
+                  @endforeach
+                </td>
+                <td>
+                  <a href="{{ route('admin.user.edit', $user->id) }}" class="btn btn-primary btn-circle btn-sm" title="edit"><i class="fa fa-edit"></i></a>
+                  <a onclick="deleteUser('{{ 'delete-user-' . $user->id }}')"
+                     href="#" class="btn btn-danger btn-circle btn-sm"
+                     title="delete">
+                      <i class="fas fa-trash"></i>
+                  </a>
+                  <!-- Form Delete user -->
+                  <form
+                      action="{{ route('admin.user.destroy', $user->id) }}"
+                      method="POST"
+                      id="{{ 'delete-user-' . $user->id }}">
+                      @csrf
+                      @method('DELETE')
+                  </form>
+                  <!-- End Delete user -->
+                </td>
               </tr>
+            @endforeach
           </tbody>
         </table>
       </div>
@@ -41,3 +63,27 @@
   </section>
 </div>
 @endsection 
+@push('js')
+<script type="text/javascript">
+  function deleteUser(id) {
+    event.preventDefault();
+    swal({
+        title: 'Are you sure to delete this user ?',
+        text: 'Once the user has been deleted you cannot retrieve its data',
+        icon: 'warning',
+        buttons: true,
+        dangerMode: true,
+    })
+    .then((willDelete) => {
+        if (willDelete) {
+            $('#' + id).submit();
+            swal('User successfully deleted', {
+                icon: 'success',
+            });
+        } else {
+            swal('User undeleted');
+        }
+    });
+  }
+</script>
+@endpush

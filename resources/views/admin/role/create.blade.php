@@ -21,27 +21,28 @@
             <div class="card-header">
               <h3 class="card-title">Role Details</h3>
             </div>
-            <form role="form" autocomplete="off">
+            <form action="{{ route('admin.role.store') }}" method="POST" id="add-role">
+              @csrf
               <div class="card-body">
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="exampleInputArabicTitle">Arabic Title</label>
-                      <input type="text" class="form-control" id="exampleInputArabicTitle" placeholder="Enter Arabic Title">
+                      <label for="exampleInputName"> Name</label>
+                      <input type="text" class="form-control" id="exampleInputName" placeholder="Enter Name" name="name">
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="exampleInputEnglishTitle">English Title</label>
-                      <input type="text" class="form-control" id="exampleInputEnglishTitle" placeholder="Enter English Title">
+                      <label for="exampleInputDisplayName">Display Name</label>
+                      <input type="text" class="form-control" id="exampleInputDisplayName" placeholder="Enter Display Name" name="display_name">
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
-                      <label>Description</label>
-                      <textarea class="form-control"></textarea>
+                      <label for="exampleInputDescription">Description</label>
+                      <textarea class="form-control" name="description" id="exampleInputDescription"></textarea>
                     </div>
                   </div>
                 </div>
@@ -55,3 +56,14 @@
   </section>
 </div>
 @endsection
+@push('js')
+<script>
+  $(document).ready(() => {
+    $('#add-role').validate({
+      rules: {
+        name: "required"
+      }
+    });
+  });
+</script>
+@endpush

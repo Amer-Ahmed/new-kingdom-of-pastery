@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Role;
 
 class RoleController extends Controller
 {
@@ -14,7 +15,8 @@ class RoleController extends Controller
      */
     public function index()
     {
-        return view('admin.role.index');
+        $roles = Role::all();
+        return view('admin.role.index' , compact('roles'));
     }
 
     /**
@@ -35,7 +37,18 @@ class RoleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attributes = $request->validate([
+            'name' => 'required|min:3|max:50',
+            'display_name' => 'nullable|min:3|max:50',
+            'description' => 'nullable|min:3',
+        ]);
+
+        Role::create($attributes);
+
+        return redirect('/role')->with([
+            'type' => 'success',
+            'message' => 'Role insert successfuly'
+        ]);
     }
 
     /**
@@ -52,34 +65,51 @@ class RoleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param \App\Models\Role $role
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Role $role)
     {
-        //
+        return view('admin.role.edit', compact('role'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \App\Models\Role $role
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Role $role)
     {
-        //
+        $attributes = $request->validate([
+            'name' => 'required|min:3|max:50',
+            'display_name' => 'nullable|min:3|max:50',
+            'description' => 'nullable|min:3',
+        ]);
+
+
+        $role->update($attributes);
+
+        return redirect('/role')->with([
+            'type' => 'success',
+            'message' => 'Role updated successfuly'
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param \App\Models\Role $role
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Role $role)
     {
-        //
+        $role->delete();
+
+        return redirect('/role')->with([
+            'type' => 'error',
+            'message' => 'Role deleted successfuly'
+        ]);
     }
 }

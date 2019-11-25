@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\Role;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -15,7 +18,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('admin.user.index');
+        $users = User::where('id', '!=', auth()->id())->with('roles')->get();
+        return view('admin.user.index' , compact('users'));
     }
 
     /**
@@ -25,7 +29,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('admin.user.create');
+        $roles = Role::where('name', '!=', 'customer')->get();
+        return view('admin.user.create' , compact('roles'));
     }
 
     /**
@@ -36,7 +41,47 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'first_name' => 'required|min:3|max:20',
+            'middle_name' => 'nullable|min:3|max:20',
+            'last_name' => 'required|min:3|max:20',
+            'roles' => 'required|array',
+            'email' => 'required|email',
+            'password' => 'required|confirmed|min:4',
+            'image' => 'nullable|image|max:5000',
+        ]);
+        if($request->filled('middle_name'))
+        {
+            $name = $request->first_name.' '.$request->middle_name.' '.$request->last_name;
+        }
+        else
+        {
+            $name = $request->first_name.' '.$request->last_name;
+        }
+        if ($request->hasFile('image')) {
+            $image = $request->file('image')->store('users', 'public');
+        }
+        else
+        {
+            $image = null;
+        }
+        $user = User::create([
+            'name' => $name,
+            'first_name' => $request->first_name,
+            'middle_name' => $request->middle_name,
+            'last_name' => $request->last_name,
+            'first_phone' => $request->first_phone,
+            'second_phone' => $request->second_phone,
+            'image' => $image,
+            'email' => $request->email,
+            'password' => Hash::make($request->password)
+        ]);
+        $user->attachRoles($request->roles);
+
+        return redirect('/user')->with([
+            'type' => 'success',
+            'message' => 'User insert successfuly'
+        ]);
     }
 
     /**
@@ -53,34 +98,63 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        $user->load('roles');
+        $roles = Role::all();
+        return view('admin.user.edit', compact('user', 'roles'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $attributes = $request->validate([
+            'first_name' => 'required|min:3|max:20',
+            'middle_name' => 'nullable',
+            'last_name' => 'required|min:3|max:20',
+            'roles' => 'required|array',
+            'email' => 'required|email',
+            'first_phone' => 'nullable',
+            'second_phone' => 'nullable',
+            'image' => 'nullable|image|max:5000'
+        ]);
+        if ($request->hasFile('image')) {
+            if (File::exists(storage_path('app/public/' . $user->image))) {
+                File::delete(storage_path('app/public/' . $user->image));
+            }
+            $attributes['image'] = $request->file('image')->store('users', 'public');
+        }
+        $user->update($attributes);
+        $user->attachRoles($request->roles);
+
+        return redirect('/user')->with([
+            'type' => 'success',
+            'message' => 'User updated successfuly'
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return redirect('/user')->with([
+            'type' => 'error',
+            'message' => 'Role deleted successfuly'
+        ]);
     }
 }

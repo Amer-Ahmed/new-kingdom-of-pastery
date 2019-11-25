@@ -14,4 +14,11 @@
 <link href="{{ asset('admin-assets/css/summernote-bs4.css') }}" rel="stylesheet">
 
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+<style type="text/css">
+	.error
+	{
+		color: red;
+		border-color: red;
+	}
+</style>
 @stack('css')

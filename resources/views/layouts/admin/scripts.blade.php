@@ -12,6 +12,10 @@
 <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.flash.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="{{ asset('admin-assets/js/jquery.validate.min.js') }}"></script>
+<script src="{{ asset('admin-assets/js/additional-methods.min.js') }}"></script>
+
 <script src="{{ asset('admin-assets/js/Chart.min.js') }}"></script>
 <script src="{{ asset('admin-assets/js/sparkline.js') }}"></script>
 <script src="{{ asset('admin-assets/js/jquery.vmap.min.js') }}"></script>
@@ -48,3 +52,16 @@
   });
 </script>
 @stack('js')
+@if(session('message'))
+    <script>
+        toastr.{{ session('type') }}("{{ session('message') }}");
+    </script>
+@endif
+
+@if($errors->any())
+    <script>
+        @foreach($errors->all() as $error)
+        toastr.error("{{ $error }}");
+        @endforeach
+    </script>
+@endif
