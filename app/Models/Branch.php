@@ -8,6 +8,8 @@ class Branch extends Model
 {
     protected $guarded = [];
 
+    protected $casts = ['service_type' => 'array'];
+
     public function deliveryAreas()
     {
     	return $this->hasMany('App\Models\BranchDeliveryArea');

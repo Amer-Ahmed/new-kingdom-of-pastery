@@ -21,19 +21,35 @@
         <table class="table table-bordered table-striped dataTable">
           <thead>
             <tr>
-              <th>Image</th>
               <th>Customer Name</th>
               <th>Email</th>
-              <th><i class="fas fa-cogs"></i></th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
+            @foreach ($customers as  $customer)
+              <tr>
+                <td><a href="{{route('admin.customer.show' , $customer->id)}}">{{$customer->name}}</a></td>
+                <td>{{$customer->email}}</td>
+                <td>
+                  <a href="{{ route('admin.customer.edit', $customer->id) }}" class="btn btn-primary btn-circle btn-sm" title="edit"><i class="fa fa-edit"></i></a>
+                  <a onclick="deleteCustomer('{{ 'delete-customer-' . $customer->id }}')"
+                     href="#" class="btn btn-danger btn-circle btn-sm"
+                     title="delete">
+                      <i class="fas fa-trash"></i>
+                  </a>
+                  <!-- Form Delete customer -->
+                  <form
+                      action="{{ route('admin.customer.destroy', $customer->id) }}"
+                      method="POST"
+                      id="{{ 'delete-customer-' . $customer->id }}">
+                      @csrf
+                      @method('DELETE')
+                  </form>
+                  <!-- End Delete customer -->
+                </td>
+              </tr>
+            @endforeach
           </tbody>
         </table>
       </div>
@@ -41,3 +57,27 @@
   </section>
 </div>
 @endsection
+@push('js')
+<script type="text/javascript">
+  function deleteCustomer(id) {
+    event.preventDefault();
+    swal({
+        title: 'Are you sure to delete this customer ?',
+        text: 'Once the customer has been deleted you cannot retrieve its data',
+        icon: 'warning',
+        buttons: true,
+        dangerMode: true,
+    })
+    .then((willDelete) => {
+        if (willDelete) {
+            $('#' + id).submit();
+            swal('Customer successfully deleted', {
+                icon: 'success',
+            });
+        } else {
+            swal('Customer undeleted');
+        }
+    });
+  }
+</script>
+@endpush

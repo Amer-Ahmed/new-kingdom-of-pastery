@@ -20,8 +20,8 @@ class CreateAreasTable extends Migration
             $table->string('name_en');
             $table->longText('description_ar')->nullable();
             $table->longText('description_en')->nullable();
-            $table->double('latitude', 8, 2);
-            $table->double('longitude', 8, 2);
+            // $table->double('latitude', 8, 2);
+            // $table->double('longitude', 8, 2);
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
             $table->timestamps();
         });

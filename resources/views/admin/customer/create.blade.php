@@ -9,7 +9,7 @@
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="{{route('admin.user.index')}}">Back</a></li>
+            <li class="breadcrumb-item"><a href="{{route('admin.customer.index')}}">Back</a></li>
           </ol>
         </div>
       </div>
@@ -21,25 +21,26 @@
             <div class="card-header">
               <h3 class="card-title">Personal information</h3>
             </div>
-            <form role="form" autocomplete="off">
+            <form action="{{ route('admin.customer.store') }}" method="POST" enctype="multipart/form-data" id="add-customer">
+              @csrf
               <div class="card-body">
                 <div class="row">
                   <div class="col-md-4">
                     <div class="form-group">
                       <label for="exampleInputFirstName">First Name</label>
-                      <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Enter First Name">
+                      <input type="text" class="form-control" id="exampleInputFirstName" placeholder="Enter First Name" name="first_name">
                     </div>
                   </div>
                   <div class="col-md-4">
                     <div class="form-group">
                       <label for="exampleInputMiddleName">Middle Name</label>
-                      <input type="text" class="form-control" id="exampleInputMiddleName" placeholder="Enter Middle Name">
+                      <input type="text" class="form-control" id="exampleInputMiddleName" placeholder="Enter Middle Name" name="middle_name">
                     </div>
                   </div>
                   <div class="col-md-4">
                     <div class="form-group">
                       <label for="exampleInputLastName">Last Name</label>
-                      <input type="text" class="form-control" id="exampleInputLastName" placeholder="Enter Last Name">
+                      <input type="text" class="form-control" id="exampleInputLastName" placeholder="Enter Last Name" name="last_name">
                     </div>
                   </div>
                 </div>
@@ -47,21 +48,21 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label for="exampleInputEmail">Email</label>
-                      <input type="email" class="form-control" id="exampleInputEmail" placeholder="Enter email">
+                      <input type="email" class="form-control" id="exampleInputEmail" placeholder="Enter email" name="email">
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
-                      <label for="exampleInputPassword">Password</label>
-                      <input type="password" class="form-control" id="exampleInputPassword" placeholder="Enter Password">
+                      <label for="password">Password</label>
+                      <input type="password" class="form-control" id="password" placeholder="Enter Password" name="password">
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="exampleInputConfirmPassword">Confirm Password</label>
-                      <input type="password" class="form-control" id="exampleInputConfirmPassword" placeholder="Enter Confirm Password">
+                      <input type="password" class="form-control" id="exampleInputConfirmPassword" placeholder="Enter Confirm Password" name="password_confirmation">
                     </div>
                   </div>
                 </div>
@@ -69,13 +70,13 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="exampleInputFirstPhone">First Phone</label>
-                      <input type="text" class="form-control" id="exampleInputFirstPhone" placeholder="Enter First Phone">
+                      <input type="text" class="form-control" id="exampleInputFirstPhone" placeholder="Enter First Phone" name="first_phone">
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="exampleInputSecondPhone">Second Phone</label>
-                      <input type="text" class="form-control" id="exampleInputSecondPhone" placeholder="Enter Second Phone">
+                      <input type="text" class="form-control" id="exampleInputSecondPhone" placeholder="Enter Second Phone" name="second_phone">
                     </div>
                   </div>
                 </div>
@@ -85,7 +86,7 @@
                       <label for="exampleInputFile">Image</label>
                       <div class="input-group">
                         <div class="custom-file">
-                          <input type="file" class="custom-file-input" id="exampleInputFile">
+                          <input type="file" class="custom-file-input" id="exampleInputFile" name="image">
                           <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                         </div>
                         <div class="input-group-append">
@@ -112,59 +113,9 @@
                               </h4>
                             </div>
                             <div id="collapseOne" class="panel-collapse in collapse" style="">
-                              <div class="card-body">
-                                <div class="row">
-                                  <div class="col-md-6">
-                                    <div class="form-group">
-                                      <label for="exampleInputCity">City</label>
-                                      <select class="form-control" id="exampleInputCity">
-                                        <option>city 1</option>
-                                        <option>city 2</option>
-                                      </select>
-                                    </div>
-                                  </div>
-                                  <div class="col-md-6">
-                                    <div class="form-group">
-                                      <label for="exampleInputArea">Area</label>
-                                      <select class="form-control" id="exampleInputArea">
-                                        <option>area 1</option>
-                                        <option>area 2</option>
-                                      </select>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-md-6">
-                                    <div class="form-group">
-                                      <label for="exampleInputStreet">Street</label>
-                                      <input type="text" class="form-control" id="exampleInputStreet" placeholder="Enter Street">
-                                    </div>
-                                  </div>
-                                  <div class="col-md-6">
-                                    <div class="form-group">
-                                      <label for="exampleInputBuildingNumber">Building Number</label>
-                                      <input type="text" class="form-control" id="exampleInputBuildingNumber" placeholder="Enter Building Number">
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-md-6">
-                                    <div class="form-group">
-                                      <label for="exampleInputFloorNumber">Floor Number</label>
-                                      <input type="text" class="form-control" id="exampleInputFloorNumber" placeholder="Enter Floor Number">
-                                    </div>
-                                  </div>
-                                  <div class="col-md-6">
-                                    <div class="form-group">
-                                      <label for="exampleInputSpecialMarque">Special Marque</label>
-                                      <input type="text" class="form-control" id="exampleInputSpecialMarque" placeholder="Enter Special Marque">
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-md-6">
-                                    <a style="float: right;" href="javascript:void(0);" class="btn btn-primary block" id="add_new_address" ><i class="fas fa-plus mr-2"></i>Add Another Address</a>
-                                  </div>
+                              <div class="row">
+                                <div class="col-md-6">
+                                  <a style="float: right;" href="javascript:void(0);" class="btn btn-primary block" id="add_new_address" ><i class="fas fa-plus mr-2"></i>Add Address</a>
                                 </div>
                               </div>
                               <div id="newAddress">
@@ -191,6 +142,25 @@
 <script>
   var i = 1 ;
   $( document ).ready(function() {
+    $('#add-customer').validate({
+        rules: {
+          first_name: "required",
+          last_name: "required",
+          email: {
+            required: true,
+            email: true
+          },
+          password : {
+            required: true,
+            minlength : 4
+          },
+          password_confirmation : {
+            required: true,
+            minlength : 4,
+            equalTo : "#password"
+          }
+        }
+    });
     var rmoveID = 0; 
     $("#add_new_address").click(function (event) {
       var append =  '<div class="container" id="block_'+rmoveID+'">';
@@ -200,19 +170,23 @@
           append += '<div class="col-md-6">';
           append += '<div class="form-group">';
           append += '<label>City'+i+'</label>';
-          append += '<select class="form-control">';
-          append += '<option>city 1</option>';
-          append += '<option>city 2</option>';
+          append += '<select class="form-control" name="Address['+rmoveID+'][city_id]" >';
+          append +='<option value="">Select City</option>';
+          @foreach($cities as $city)
+            append += '<option value="{{$city->id}}">{{$city->name_en}}</option>';
+          @endforeach
           append += '</select>';
           append += '</div>';
           append += '</div>';
           append += '<div class="col-md-6">';
           append += '<div class="form-group">';
           append += '<label>Area'+i+'</label>';
-          append += '<select class="form-control">';
-          append += '<option>area 1</option>';
-          append += '<option>area 2</option>';
-          append +=  '</select>';
+          append += '<select class="form-control" name="Address['+rmoveID+'][area_id]" >';
+          append +='<option value="">Select Area</option>';
+          @foreach($areas as $area)
+            append += '<option value="{{$area->id}}">{{$area->name_en}}</option>';
+          @endforeach
+          append += '</select>';
           append += '</div>';
           append += '</div>';
           append += '</div>';
@@ -220,13 +194,13 @@
           append += '<div class="col-md-6">';
           append += '<div class="form-group">';
           append +=  '<label>Street'+i+'</label>';
-          append += '<input type="text" class="form-control" placeholder="Enter Street">';
+          append += '<input type="text" class="form-control" placeholder="Enter Street" name="Address['+rmoveID+'][street]">';
           append += '</div>';
           append += '</div>';
           append += '<div class="col-md-6">';
           append += '<div class="form-group">';
           append += '<label>Building Number'+i+'</label>';
-          append +=  '<input type="text" class="form-control" placeholder="Enter Building Number">';
+          append += '<input type="text" class="form-control" placeholder="Enter Building Number" name="Address['+rmoveID+'][building_number]">';
           append += '</div>';
           append += '</div>';
           append += '</div>';
@@ -235,13 +209,13 @@
           append += '<div class="col-md-6">';
           append += '<div class="form-group">';
           append +=  '<label>Floor Number'+i+'</label>';
-          append += '<input type="text" class="form-control" placeholder="Enter Floor Number">';
+          append += '<input type="text" class="form-control" placeholder="Enter Floor Number" name="Address['+rmoveID+'][floor_number]">';
           append += '</div>';
           append += '</div>';
           append += '<div class="col-md-6">';
           append += '<div class="form-group">';
           append += '<label>Special Marque'+i+'</label>';
-          append +=  '<input type="text" class="form-control" placeholder="Enter Special Marque">';
+          append += '<input type="text" class="form-control" placeholder="Enter Special Marque" name="Address['+rmoveID+'][special_marque]">';
           append += '</div>';
           append += '</div>';
           append += '</div>';

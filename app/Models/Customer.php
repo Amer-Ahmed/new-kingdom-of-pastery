@@ -8,8 +8,13 @@ class Customer extends Model
 {
     protected $guarded = [];
 
+    /**
+     * A customer has many addresses.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function addresses()
     {
-    	return $this->hasMany('App\Models\Address');
+        return $this->hasMany(Address::class);
     }	
 }

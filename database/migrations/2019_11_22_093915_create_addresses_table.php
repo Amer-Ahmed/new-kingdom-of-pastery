@@ -21,7 +21,7 @@ class CreateAddressesTable extends Migration
             $table->unsignedBigInteger('area_id')->index();
             $table->string('street');
             $table->string('building_number');
-            $table->integer('floor_number');
+            $table->string('floor_number');
             $table->string('special_marque')->nullable();
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('cascade');
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');

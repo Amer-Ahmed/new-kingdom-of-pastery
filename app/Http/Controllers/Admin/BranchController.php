@@ -4,6 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Branch;
+use App\Models\WorkingDay;
+use App\Models\BranchDeliveryArea;
+use App\Models\City;
+use App\Models\Area;
 
 class BranchController extends Controller
 {
@@ -14,7 +19,8 @@ class BranchController extends Controller
      */
     public function index()
     {
-        return view('admin.branch.index');
+        $branches = Branch::all();
+        return view('admin.branch.index' , compact('branches'));
     }
 
     /**
@@ -24,7 +30,9 @@ class BranchController extends Controller
      */
     public function create()
     {
-        return view('admin.branch.create');
+        $cities = City::all();
+        $areas = Area::all();
+        return view('admin.branch.create' , compact('cities' , 'areas'));
     }
 
     /**
@@ -35,7 +43,24 @@ class BranchController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $attributes = $request->validate([
+            'name_ar' => 'required|min:3|max:30',
+            'name_en' => 'required|min:3|max:30',
+            'city_id' => 'required|numeric',
+            'area_id' => 'required|numeric',
+            'address_description' => 'required',
+            'first_phone' => 'required|numeric',
+            'second_phone' => 'nullable|numeric',
+            'email' => 'required|email',
+            'service_type' => 'required|array',
+        ]);
+        $attributes['service_type'] = implode(",", $request->get('service_type'));
+        $branch = Branch::create($attributes);
+
+        return redirect('/branch')->with([
+            'type' => 'success',
+            'message' => 'Branch insert successfuly'
+        ]);
     }
 
     /**
@@ -55,9 +80,11 @@ class BranchController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Branch $branch)
     {
-        //
+        $cities = City::all();
+        $areas = Area::all();
+        return view('admin.branch.edit' , compact('cities' , 'areas' , 'branch'));
     }
 
     /**
@@ -67,9 +94,26 @@ class BranchController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Branch $branch)
     {
-        //
+        $attributes = $request->validate([
+            'name_ar' => 'required|min:3|max:30',
+            'name_en' => 'required|min:3|max:30',
+            'city_id' => 'required|numeric',
+            'area_id' => 'required|numeric',
+            'address_description' => 'required',
+            'first_phone' => 'required|numeric',
+            'second_phone' => 'nullable|numeric',
+            'email' => 'required|email',
+            'service_type' => 'required|array',
+        ]);
+        $attributes['service_type'] = implode(",", $request->get('service_type'));
+        $branch->update($attributes);
+
+        return redirect('/branch')->with([
+            'type' => 'success',
+            'message' => 'Branch update successfuly'
+        ]);
     }
 
     /**
@@ -78,8 +122,13 @@ class BranchController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Branch $branch)
     {
-        //
+        $branch->delete();
+
+        return redirect('/branch')->with([
+            'type' => 'error',
+            'message' => 'Branch deleted successfuly'
+        ]);
     }
 }
