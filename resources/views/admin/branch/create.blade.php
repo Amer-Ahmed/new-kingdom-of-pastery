@@ -116,7 +116,7 @@
                   </div>
                 </div>
                 <hr>
-                <!-- <div class="row">
+                <div class="row">
                   <div class="col-md-12">
                     <div class="card">
                       <div class="card-header">
@@ -138,7 +138,7 @@
                                   <div class="col-md-3">
                                     <div class="form-group">
                                       <div class="icheck-primary d-inline">
-                                        <input type="checkbox" id="Sunday" name="day[]" value="sunday">
+                                        <input type="checkbox" id="Sunday" name="WorkingDay['day']" value="sunday">
                                         <label for="Sunday">
                                            Sunday
                                         </label>
@@ -150,7 +150,7 @@
                                       <div class="bootstrap-timepicker">
                                           <label>From:</label>
                                           <div class="input-group date" id="timepicker1" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input" data-target="#timepicker1" name="time_from[]">
+                                            <input type="text" class="form-control datetimepicker-input" data-target="#timepicker1" name="WorkingDay['time_from']">
                                             <div class="input-group-append" data-target="#timepicker1" data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="far fa-clock"></i></div>
                                             </div>
@@ -165,7 +165,7 @@
                                           <label>To:</label>
 
                                           <div class="input-group date" id="timepicker2" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input" data-target="#timepicker2" name="time_to[]">
+                                            <input type="text" class="form-control datetimepicker-input" data-target="#timepicker2" name="WorkingDay['time_to']">
                                             <div class="input-group-append" data-target="#timepicker2" data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="far fa-clock"></i></div>
                                             </div>
@@ -180,7 +180,7 @@
                                   <div class="col-md-3">
                                     <div class="form-group">
                                       <div class="icheck-primary d-inline">
-                                        <input type="checkbox" id="Monday" name="day[]" value="monday">
+                                        <input type="checkbox" id="Monday" name="WorkingDay['day']" value="monday">
                                         <label for="Monday">
                                            Monday
                                         </label>
@@ -192,7 +192,7 @@
                                       <div class="bootstrap-timepicker">
                                           <label>From:</label>
                                           <div class="input-group date" id="timepicker3" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input" data-target="#timepicker3" name="time_from[]">
+                                            <input type="text" class="form-control datetimepicker-input" data-target="#timepicker3" name="WorkingDay['time_from']">
                                             <div class="input-group-append" data-target="#timepicker3" data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="far fa-clock"></i></div>
                                             </div>
@@ -207,7 +207,7 @@
                                           <label>To:</label>
 
                                           <div class="input-group date" id="timepicker4" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input" data-target="#timepicker4" name="time_to[]">
+                                            <input type="text" class="form-control datetimepicker-input" data-target="#timepicker4" name="WorkingDay['time_to']">
                                             <div class="input-group-append" data-target="#timepicker4" data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="far fa-clock"></i></div>
                                             </div>
@@ -222,7 +222,7 @@
                                   <div class="col-md-3">
                                     <div class="form-group">
                                       <div class="icheck-primary d-inline">
-                                        <input type="checkbox" id="Tuesday" name="day[]" value="tuesday">
+                                        <input type="checkbox" id="Tuesday" name="WorkingDay['day']" value="tuesday">
                                         <label for="Tuesday">
                                            Tuesday
                                         </label>
@@ -234,7 +234,7 @@
                                       <div class="bootstrap-timepicker">
                                           <label>From:</label>
                                           <div class="input-group date" id="timepicker5" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input" data-target="#timepicker5" name="time_from[]">
+                                            <input type="text" class="form-control datetimepicker-input" data-target="#timepicker5" name="WorkingDay['time_from']">
                                             <div class="input-group-append" data-target="#timepicker5" data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="far fa-clock"></i></div>
                                             </div>
@@ -249,7 +249,7 @@
                                           <label>To:</label>
 
                                           <div class="input-group date" id="timepicker6" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input" data-target="#timepicker6" name="time_to[]">
+                                            <input type="text" class="form-control datetimepicker-input" data-target="#timepicker6" name="WorkingDay['time_to']">
                                             <div class="input-group-append" data-target="#timepicker6" data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="far fa-clock"></i></div>
                                             </div>
@@ -264,7 +264,7 @@
                                   <div class="col-md-3">
                                     <div class="form-group">
                                       <div class="icheck-primary d-inline">
-                                        <input type="checkbox" id="Wednesday" name="day[]" value="wednesday">
+                                        <input type="checkbox" id="Wednesday" name="WorkingDay['day']" value="wednesday">
                                         <label for="Wednesday">
                                            Wednesday
                                         </label>
@@ -276,7 +276,7 @@
                                       <div class="bootstrap-timepicker">
                                           <label>From:</label>
                                           <div class="input-group date" id="timepicker7" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input" data-target="#timepicker7" name="time_from[]">
+                                            <input type="text" class="form-control datetimepicker-input" data-target="#timepicker7" name="WorkingDay['time_from']">
                                             <div class="input-group-append" data-target="#timepicker7" data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="far fa-clock"></i></div>
                                             </div>
@@ -291,7 +291,7 @@
                                           <label>To:</label>
 
                                           <div class="input-group date" id="timepicker8" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input" data-target="#timepicker8" name="time_to[]">
+                                            <input type="text" class="form-control datetimepicker-input" data-target="#timepicker8" name="WorkingDay['time_to']">
                                             <div class="input-group-append" data-target="#timepicker8" data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="far fa-clock"></i></div>
                                             </div>
@@ -306,7 +306,7 @@
                                   <div class="col-md-3">
                                     <div class="form-group">
                                       <div class="icheck-primary d-inline">
-                                        <input type="checkbox" id="Thursday" name="day[]" value="thursday">
+                                        <input type="checkbox" id="Thursday" name="WorkingDay['day']" value="thursday">
                                         <label for="Thursday">
                                            Thursday
                                         </label>
@@ -318,7 +318,7 @@
                                       <div class="bootstrap-timepicker">
                                           <label>From:</label>
                                           <div class="input-group date" id="timepicker9" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input" data-target="#timepicker9" name="time_from[]">
+                                            <input type="text" class="form-control datetimepicker-input" data-target="#timepicker9" name="WorkingDay['time_from']">
                                             <div class="input-group-append" data-target="#timepicker9" data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="far fa-clock"></i></div>
                                             </div>
@@ -333,7 +333,7 @@
                                           <label>To:</label>
 
                                           <div class="input-group date" id="timepicker10" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input" data-target="#timepicker10" name="time_to[]">
+                                            <input type="text" class="form-control datetimepicker-input" data-target="#timepicker10" name="WorkingDay['time_to']">
                                             <div class="input-group-append" data-target="#timepicker10" data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="far fa-clock"></i></div>
                                             </div>
@@ -348,7 +348,7 @@
                                   <div class="col-md-3">
                                     <div class="form-group">
                                       <div class="icheck-primary d-inline">
-                                        <input type="checkbox" id="Friday" name="day[]" value="friday">
+                                        <input type="checkbox" id="Friday" name="WorkingDay['day']" value="friday">
                                         <label for="Friday">
                                            Friday
                                         </label>
@@ -360,7 +360,7 @@
                                       <div class="bootstrap-timepicker">
                                           <label>From:</label>
                                           <div class="input-group date" id="timepicker11" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input" data-target="#timepicker11" name="time_from[]">
+                                            <input type="text" class="form-control datetimepicker-input" data-target="#timepicker11" name="WorkingDay['time_from']">
                                             <div class="input-group-append" data-target="#timepicker11" data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="far fa-clock"></i></div>
                                             </div>
@@ -375,7 +375,7 @@
                                           <label>To:</label>
 
                                           <div class="input-group date" id="timepicker12" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input" data-target="#timepicker12" name="time_to[]">
+                                            <input type="text" class="form-control datetimepicker-input" data-target="#timepicker12" name="WorkingDay['time_to']">
                                             <div class="input-group-append" data-target="#timepicker12" data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="far fa-clock"></i></div>
                                             </div>
@@ -390,7 +390,7 @@
                                   <div class="col-md-3">
                                     <div class="form-group">
                                       <div class="icheck-primary d-inline">
-                                        <input type="checkbox" id="Saturday" name="day[]">
+                                        <input type="checkbox" id="Saturday" name="WorkingDay['day']">
                                         <label for="Saturday">
                                            Saturday
                                         </label>
@@ -402,7 +402,7 @@
                                       <div class="bootstrap-timepicker">
                                           <label>From:</label>
                                           <div class="input-group date" id="timepicker13" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input" data-target="#timepicker13" name="time_from[]">
+                                            <input type="text" class="form-control datetimepicker-input" data-target="#timepicker13" name="WorkingDay['time_from']">
                                             <div class="input-group-append" data-target="#timepicker13" data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="far fa-clock"></i></div>
                                             </div>
@@ -417,7 +417,7 @@
                                           <label>To:</label>
 
                                           <div class="input-group date" id="timepicker14" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input" data-target="#timepicker14" name="time_to[]">
+                                            <input type="text" class="form-control datetimepicker-input" data-target="#timepicker14" name="WorkingDay['time_to']">
                                             <div class="input-group-append" data-target="#timepicker14" data-toggle="datetimepicker">
                                                 <div class="input-group-text"><i class="far fa-clock"></i></div>
                                             </div>
@@ -435,9 +435,9 @@
                       </div>
                     </div>
                   </div>
-                </div> -->
+                </div>
                 <hr>
-                <!-- <div class="row">
+                <div class="row">
                   <div class="col-md-12">
                     <div class="card">
                       <div class="card-header">
@@ -703,7 +703,7 @@
                       </div>
                     </div>
                   </div>
-                </div> -->
+                </div>
               </div>
               <div class="card-footer">
                 <button type="submit" class="btn btn-primary float-right">Submit</button>

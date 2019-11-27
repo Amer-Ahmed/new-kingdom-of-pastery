@@ -21,36 +21,38 @@
         <div class="card-header">
           <h3 class="card-title">Offer Details</h3>
         </div>
-        <form role="form" autocomplete="off">
+        <form action="{{ route('admin.offer.store') }}" method="POST" enctype="multipart/form-data" id="add-offer">
+          @csrf
           <div class="card-body">
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="exampleInputTitle">Title</label>
-                  <input type="text" class="form-control" id="exampleInputTitle" placeholder="Enter Title">
+                  <input type="text" class="form-control" id="exampleInputTitle" placeholder="Enter Title" name="title">
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="exampleInputService">Service</label>
-                  <select class="form-control" id="exampleInputService">
-                    <option>Select Service</option>
-                    <option>Delivery</option>
-                    <option>Take awy</option>
+                  <select class="form-control" id="exampleInputService" name="service_type">
+                    <option value="">Select Service</option>
+                    <option value="delivery">Delivery</option>
+                    <option value="take-way">Take awy</option>
                   </select>
                 </div>
               </div>
             </div>
             <div class="row">
-              <div class="col-md-12">
+              <div class="col-md-6">
                 <div class="form-group">
-                  <label>Offer Date and time range:</label>
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="far fa-clock"></i></span>
-                    </div>
-                    <input type="text" class="form-control float-right" id="reservationtime">
-                  </div>
+                  <label>Date From</label>
+                  <input type="datetime-local" class="form-control" name="date_from">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label>Date To</label>
+                  <input type="datetime-local" class="form-control" name="date_to">
                 </div>
               </div>
             </div>
@@ -58,14 +60,14 @@
               <div class="col-md-12">
                 <div class="form-group">
                   <label>Branch</label>
-                  <select class="select2" multiple="multiple" data-placeholder="Select a State" style="width: 100%;">
-                    <option>Branch1</option>
-                    <option>Branch2</option>
-                    <option>Branch3</option>
-                    <option>Branch4</option>
-                    <option>Branch5</option>
-                    <option>Branch6</option>
-                    <option>Branch7</option>
+                  <select class="select2" multiple="multiple" data-placeholder="Select a State" style="width: 100%;" name="branches[]">
+                    <option value="Branch1">Branch1</option>
+                    <option value="Branch2">Branch2</option>
+                    <option value="Branch3">Branch3</option>
+                    <option value="Branch4">Branch4</option>
+                    <option value="Branch5">Branch5</option>
+                    <option value="Branch6">Branch6</option>
+                    <option value="Branch7">Branch7</option>
                   </select>
                 </div>
               </div>
@@ -74,7 +76,7 @@
               <div class="col-md-12">
                 <div class="form-group">
                   <label for="offerDescription">Description</label>
-                  <textarea class="form-control"></textarea>
+                  <textarea class="form-control" name="description"></textarea>
                 </div>
               </div>
             </div>
@@ -84,7 +86,7 @@
                   <label for="exampleInputFile">Image</label>
                   <div class="input-group">
                     <div class="custom-file">
-                      <input type="file" class="custom-file-input" id="exampleInputFile">
+                      <input type="file" class="custom-file-input" id="exampleInputFile" name="image">
                       <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                     </div>
                     <div class="input-group-append">
@@ -98,8 +100,8 @@
               <div class="col-md-8">
                 <div class="form-group">
                   <label for="exampleInputOfferType">Offer Type</label>
-                  <select class="form-control" id="exampleInputOfferType" onchange="selectOfferType(this)">
-                    <option>Select Offer Type</option>
+                  <select class="form-control" id="exampleInputOfferType" onchange="selectOfferType(this)" name="offer_type">
+                    <option value="">Select Offer Type</option>
                     <option value="buy-get">Buy / Get</option>
                     <option value="discount">Discount</option>
                   </select>
@@ -115,16 +117,16 @@
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="exampleInputQuauntity">Quauntity</label>
-                        <input type="number" class="form-control" id="exampleInputQuauntity" placeholder="Enter Quauntity">
+                        <input type="number" class="form-control" id="exampleInputQuauntity" placeholder="Enter Quauntity" name="buy_quantity">
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="exampleInputCategory">Category</label>
-                        <select class="form-control" id="exampleInputCategory">
-                          <option>Select Category</option>
-                          <option>Category1</option>
-                          <option>Category2</option>
+                        <select class="form-control" id="exampleInputCategory" name="buy_category_id">
+                          <option value="">Select Category</option>
+                          <option value="1">Category1</option>
+                          <option value="2">Category2</option>
                         </select>
                       </div>
                     </div>
@@ -133,14 +135,14 @@
                     <div class="col-md-12">
                       <div class="form-group">
                         <label>Items</label>
-                        <select class="select2" multiple="multiple" data-placeholder="Select a Item" style="width: 100%;">
-                          <option>Item1</option>
-                          <option>Item2</option>
-                          <option>Item3</option>
-                          <option>Item4</option>
-                          <option>Item5</option>
-                          <option>Item6</option>
-                          <option>Item7</option>
+                        <select class="select2" multiple="multiple" data-placeholder="Select a Item" style="width: 100%;" name="buy_items[]">
+                          <option value="Item1">Item1</option>
+                          <option value="Item2">Item2</option>
+                          <option value="Item3">Item3</option>
+                          <option value="Item4">Item4</option>
+                          <option value="Item5">Item5</option>
+                          <option value="Item6">Item6</option>
+                          <option value="Item7">Item7</option>
                         </select>
                       </div>
                     </div>
@@ -152,34 +154,42 @@
                 <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label for="exampleInputCategory2">Category</label>
-                        <select class="form-control" id="exampleInputCategory2">
-                          <option>Select Category</option>
-                          <option>Category1</option>
-                          <option>Category2</option>
-                        </select>
+                        <label for="exampleInputQuauntity">Quauntity</label>
+                        <input type="number" class="form-control" id="exampleInputQuauntity" placeholder="Enter Quauntity" name="get_quantity">
                       </div>
                     </div>
                     <div class="col-md-6">
                       <div class="form-group">
-                        <label>Items</label>
-                        <select class="select2" multiple="multiple" data-placeholder="Select a Item" style="width: 100%;">
-                          <option>Item1</option>
-                          <option>Item2</option>
-                          <option>Item3</option>
-                          <option>Item4</option>
-                          <option>Item5</option>
-                          <option>Item6</option>
-                          <option>Item7</option>
+                        <label for="exampleInputCategory2">Category</label>
+                        <select class="form-control" id="exampleInputCategory2" name="get_category_id">
+                          <option value="">Select Category</option>
+                          <option value="1">Category1</option>
+                          <option value="2">Category2</option>
                         </select>
                       </div>
                     </div>
                 </div>
                 <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>Items</label>
+                      <select class="select2" multiple="multiple" data-placeholder="Select a Item" style="width: 100%;" name="get_items[]">
+                        <option value="Item1">Item1</option>
+                        <option value="Item2">Item2</option>
+                        <option value="Item3">Item3</option>
+                        <option value="Item4">Item4</option>
+                        <option value="Item5">Item5</option>
+                        <option value="Item6">Item6</option>
+                        <option value="Item7">Item7</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
                   <div class="col-md-8">
                     <div class="form-group">
                       <label for="exampleInputOfferPrice">Offer Price</label>
-                      <select class="form-control" id="exampleInputOfferPrice">
+                      <select class="form-control" id="exampleInputOfferPrice" name="offer_price">
                         <option>Select Offer Price</option>
                         <option>Free</option>
                         <option>20%</option>
@@ -204,16 +214,16 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="exampleInputQuauntity">Quauntity</label>
-                      <input type="number" class="form-control" id="exampleInputQuauntity" placeholder="Enter Quauntity">
+                      <input type="number" class="form-control" id="exampleInputQuauntity" placeholder="Enter Quauntity" name="discount_quantity">
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="exampleInputCategory">Category</label>
-                      <select class="form-control" id="exampleInputCategory">
-                        <option>Select Category</option>
-                        <option>Category1</option>
-                        <option>Category2</option>
+                      <select class="form-control" id="exampleInputCategory" name="category_id">
+                        <option value="">Select Category</option>
+                        <option value="1">Category1</option>
+                        <option value="2">Category2</option>
                       </select>
                     </div>
                   </div>
@@ -222,14 +232,14 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label>Items</label>
-                      <select class="select2" multiple="multiple" data-placeholder="Select a Item" style="width: 100%;">
-                        <option>Item1</option>
-                        <option>Item2</option>
-                        <option>Item3</option>
-                        <option>Item4</option>
-                        <option>Item5</option>
-                        <option>Item6</option>
-                        <option>Item7</option>
+                      <select class="select2" multiple="multiple" data-placeholder="Select a Item" style="width: 100%;" name="items[]">
+                        <option value="Item1">Item1</option>
+                        <option value="Item2">Item2</option>
+                        <option value="Item3">Item3</option>
+                        <option value="Item4">Item4</option>
+                        <option value="Item5">Item5</option>
+                        <option value="Item6">Item6</option>
+                        <option value="Item7">Item7</option>
                       </select>
                     </div>
                   </div>
@@ -238,17 +248,17 @@
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="exampleInputDiscountType">Discount Type</label>
-                      <select class="form-control" id="exampleInputDiscountType">
+                      <select class="form-control" id="exampleInputDiscountType" name="discount_type">
                         <option>Select Discount Type</option>
-                        <option value="percentage">percentage</option>
-                        <option value="percentage">Amount</option>
+                        <option value="1">percentage</option>
+                        <option value="2">Amount</option>
                       </select>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="exampleInputValue">Value</label>
-                      <input type="text" class="form-control">
+                      <input type="number" class="form-control" name="discount_value">
                     </div>
                   </div>
                 </div>

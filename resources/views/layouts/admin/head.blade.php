@@ -12,6 +12,7 @@
 <link href="{{ asset('admin-assets/css/OverlayScrollbars.min.css') }}" rel="stylesheet">
 <link href="{{ asset('admin-assets/css/daterangepicker.css') }}" rel="stylesheet">
 <link href="{{ asset('admin-assets/css/summernote-bs4.css') }}" rel="stylesheet">
+<link href="{{ asset('admin-assets/css/jquery.datetimepicker.min.css') }}" rel="stylesheet">
 
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 <style type="text/css">

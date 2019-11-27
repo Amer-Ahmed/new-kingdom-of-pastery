@@ -19,7 +19,7 @@ class BranchController extends Controller
      */
     public function index()
     {
-        $branches = Branch::all();
+        $branches = Branch::get();
         return view('admin.branch.index' , compact('branches'));
     }
 
@@ -30,8 +30,8 @@ class BranchController extends Controller
      */
     public function create()
     {
-        $cities = City::all();
-        $areas = Area::all();
+        $cities = City::get();
+        $areas = Area::get();
         return view('admin.branch.create' , compact('cities' , 'areas'));
     }
 
@@ -57,6 +57,18 @@ class BranchController extends Controller
         $attributes['service_type'] = implode(",", $request->get('service_type'));
         $branch = Branch::create($attributes);
 
+        if($request->has('WorkingDay'))
+        {
+            $working_days = $request->get('WorkingDay');
+            foreach ($working_days as $working_day) {
+                WorkingDay::create([
+                    'branch_id' => $branch->id,
+                    'day' => $working_day['day'],
+                    'time_from' => $working_day['time_from'],
+                    'time_to' => $working_day['time_to'],
+                ]);
+            }
+        }
         return redirect('/branch')->with([
             'type' => 'success',
             'message' => 'Branch insert successfuly'

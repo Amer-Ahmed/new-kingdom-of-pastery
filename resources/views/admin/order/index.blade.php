@@ -19,12 +19,10 @@
               <th>Order #</th>
               <th>Customer Name</th>
               <th>Item</th>
-              <th><i class="fas fa-cogs"></i></th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td></td>
               <td></td>
               <td></td>
               <td></td>

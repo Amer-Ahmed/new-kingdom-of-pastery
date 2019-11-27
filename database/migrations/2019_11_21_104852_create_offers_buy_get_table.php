@@ -18,16 +18,14 @@ class CreateOffersBuyGetTable extends Migration
             $table->unsignedBigInteger('offer_id')->index();
             $table->integer('buy_quantity');
             $table->unsignedBigInteger('buy_category_id')->index();
-            $table->unsignedBigInteger('buy_item_id')->index();
+            $table->string('buy_items');
             $table->integer('get_quantity');
             $table->unsignedBigInteger('get_category_id')->index();
-            $table->unsignedBigInteger('get_item_id')->index();
+            $table->string('get_items');
             $table->integer('offer_price');
             $table->foreign('offer_id')->references('id')->on('offers')->onDelete('cascade');
             $table->foreign('buy_category_id')->references('id')->on('categories')->onDelete('cascade');
-            $table->foreign('buy_item_id')->references('id')->on('items')->onDelete('cascade');
             $table->foreign('get_category_id')->references('id')->on('categories')->onDelete('cascade');
-            $table->foreign('get_item_id')->references('id')->on('items')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -22,18 +22,39 @@
           <thead>
             <tr>
               <th>Name</th>
-              <th>Category</th>
+              <th>Date From</th>
+              <th>Date To</th>
               <th>Service</th>
-              <th><i class="fas fa-cogs"></i></th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
+            @foreach($offers as $offer)
             <tr>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
+              <td>{{$offer->title}}</td>
+              <td>{{$offer->date_from}}</td>
+              <td>{{$offer->date_to}}</td>
+              <td>{{$offer->service_type}}</td>
+              <td>
+                  <a href="{{ route('admin.offer.edit', $offer->id) }}" class="btn btn-primary btn-circle btn-sm" title="edit"><i class="fa fa-edit"></i></a>
+                  <a onclick="deleteOffer('{{ 'delete-offer-' . $offer->id }}')"
+                     href="#" class="btn btn-danger btn-circle btn-sm"
+                     title="delete">
+                      <i class="fas fa-trash"></i>
+                  </a>
+                  <a href="#" class="btn btn-info btn-circle btn-sm"><i class="fas fa-user-secret" title="permission"></i></a>
+                  <!-- Form Delete offer -->
+                  <form
+                      action="{{ route('admin.offer.destroy', $offer->id) }}"
+                      method="POST"
+                      id="{{ 'delete-offer-' . $offer->id }}">
+                      @csrf
+                      @method('DELETE')
+                  </form>
+                  <!-- End Delete offer -->
+                </td>
             </tr>
+            @endforeach
           </tbody>
         </table>
       </div>
@@ -41,3 +62,27 @@
   </section>
 </div>
 @endsection
+@push('js')
+<script type="text/javascript">
+  function deleteOffer(id) {
+    event.preventDefault();
+    swal({
+        title: 'Are you sure to delete this offer ?',
+        text: 'Once the offer has been deleted you cannot retrieve its data',
+        icon: 'warning',
+        buttons: true,
+        dangerMode: true,
+    })
+    .then((willDelete) => {
+        if (willDelete) {
+            $('#' + id).submit();
+            swal('Offer successfully deleted', {
+                icon: 'success',
+            });
+        } else {
+            swal('Offer undeleted');
+        }
+    });
+  }
+</script>
+@endpush

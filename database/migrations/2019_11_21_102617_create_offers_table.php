@@ -19,7 +19,7 @@ class CreateOffersTable extends Migration
             $table->string('service_type');
             $table->datetime('date_from');
             $table->datetime('date_to');
-            $table->json('branch_id');
+            $table->string('branches');
             $table->longText('description')->nullable();
             $table->string('image')->nullable();
             $table->string('offer_type');

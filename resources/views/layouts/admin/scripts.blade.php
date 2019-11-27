@@ -23,6 +23,7 @@
 <script src="{{ asset('admin-assets/js/jquery.knob.min.js') }}"></script>
 <script src="{{ asset('admin-assets/js/moment.min.js') }}"></script>
 <script src="{{ asset('admin-assets/js/daterangepicker.js') }}"></script>
+<script src="{{ asset('admin-assets/js/jquery.datetimepicker.js') }}"></script>
 <script src="{{ asset('admin-assets/js/tempusdominus-bootstrap-4.min.js') }}"></script>
 <script src="{{ asset('admin-assets/js/summernote-bs4.min.js') }}"></script>
 <script src="{{ asset('admin-assets/js/jquery.overlayScrollbars.min.js') }}"></script>
@@ -42,13 +43,6 @@
   });
   $('#timepicker1,#timepicker2,#timepicker3,#timepicker4,#timepicker5,#timepicker6,#timepicker7,#timepicker8,#timepicker9,#timepicker10,#timepicker11,#timepicker12,#timepicker13,#timepicker14').datetimepicker({
     format: 'LT'
-  });
-  $('#reservationtime').daterangepicker({
-    timePicker: true,
-    timePickerIncrement: 30,
-    locale: {
-      format: 'MM/DD/YYYY hh:mm A'
-    }
   });
 </script>
 @stack('js')

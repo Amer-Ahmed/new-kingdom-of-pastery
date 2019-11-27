@@ -18,12 +18,11 @@ class CreateOffersDiscountTable extends Migration
             $table->unsignedBigInteger('offer_id');
             $table->integer('quantity');
             $table->unsignedBigInteger('category_id');
-            $table->unsignedBigInteger('item_id');
+            $table->string('items');
             $table->integer('discount_type');
             $table->integer('discount_value');
             $table->foreign('offer_id')->references('id')->on('offers')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-            $table->foreign('item_id')->references('id')->on('items')->onDelete('cascade');
             $table->timestamps();
         });
     }

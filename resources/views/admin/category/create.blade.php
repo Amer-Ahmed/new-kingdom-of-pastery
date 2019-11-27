@@ -21,19 +21,20 @@
             <div class="card-header">
               <h3 class="card-title">Category Details</h3>
             </div>
-            <form role="form" autocomplete="off">
+            <form action="{{ route('admin.category.store') }}" method="POST" enctype="multipart/form-data" id="add-category">
+             @csrf
               <div class="card-body">
                 <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="exampleInputArabicName">Arabic Name</label>
-                      <input type="text" class="form-control" id="exampleInputArabicName" placeholder="Enter Arabic Name">
+                      <input type="text" class="form-control" id="exampleInputArabicName" placeholder="Enter Arabic Name" name="name_ar">
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="exampleInputEnglishName">English Name</label>
-                      <input type="text" class="form-control" id="exampleInputEnglishName" placeholder="Enter English Name">
+                      <input type="text" class="form-control" id="exampleInputEnglishName" placeholder="Enter English Name" name="name_en">
                     </div>
                   </div>
                 </div>
@@ -41,7 +42,7 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label for="exampleInputArabicDescription">Arabic Description</label>
-                      <textarea class="form-control" id="exampleInputArabicDescription" placeholder="Enter Arabic Description"></textarea>
+                      <textarea class="form-control" id="exampleInputArabicDescription" placeholder="Enter Arabic Description" name="description_ar"></textarea>
                     </div>
                   </div>
                 </div>
@@ -49,7 +50,7 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label for="exampleInputEnglishDescription">English Description</label>
-                      <textarea class="form-control" id="exampleInputEnglishDescription" placeholder="Enter English Description"></textarea>
+                      <textarea class="form-control" id="exampleInputEnglishDescription" placeholder="Enter English Description" name="description_en"></textarea>
                     </div>
                   </div>
                 </div>
@@ -59,7 +60,7 @@
                       <label for="exampleInputFile">Image</label>
                       <div class="input-group">
                         <div class="custom-file">
-                          <input type="file" class="custom-file-input" id="exampleInputFile">
+                          <input type="file" class="custom-file-input" id="exampleInputFile" name="image">
                           <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                         </div>
                         <div class="input-group-append">
@@ -86,74 +87,12 @@
                               </h4>
                             </div>
                             <div id="collapseItem" class="panel-collapse in collapse" style="">
-                              <div class="card-body">
-                                <div class="row">
-                                  <div class="col-md-6">
-                                    <div class="form-group">
-                                      <label for="exampleInputItemArabicName">Item Arabic Name</label>
-                                      <input type="text" class="form-control" id="exampleInputItemArabicName" placeholder="Enter Item Arabic Name">
-                                    </div>
-                                  </div>
-                                  <div class="col-md-6">
-                                    <div class="form-group">
-                                      <label for="exampleInputItemEnglishName">Item English Name</label>
-                                      <input type="text" class="form-control" id="exampleInputItem EnglishName" placeholder="Enter Item English Name">
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-md-12">
-                                    <div class="form-group">
-                                      <label for="exampleInputItemArabicDescription">Item Arabic Description</label>
-                                      <textarea class="form-control" id="exampleInputItemArabicDescription" placeholder="Enter Item Arabic Description"></textarea>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-md-12">
-                                    <div class="form-group">
-                                      <label for="exampleInputItemEnglishDescription">Item English Description</label>
-                                      <textarea class="form-control" id="exampleInputItemEnglishDescription" placeholder="Enter Item English Description"></textarea>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-md-6">
-                                    <div class="form-group">
-                                      <label for="exampleInputItemPrice">Item Price</label>
-                                      <input type="text" class="form-control" id="exampleInputItemPrice" placeholder="Enter Item Price">
-                                    </div>
-                                  </div>
-                                  <div class="col-md-6">
-                                    <div class="form-group">
-                                      <label for="exampleInputItemCalories">Item Calories</label>
-                                      <input type="text" class="form-control" id="exampleInputItemCalories" placeholder="Enter Item Calories">
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-md-12">
-                                    <div class="form-group">
-                                      <label>Image</label>
-                                      <div class="input-group">
-                                        <div class="custom-file">
-                                          <input type="file" class="custom-file-input">
-                                          <label class="custom-file-label">Choose file</label>
-                                        </div>
-                                        <div class="input-group-append">
-                                          <span class="input-group-text">Upload</span>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-md-6">
-                                    <a style="float: right;" href="javascript:void(0);" class="btn btn-primary block" id="add_new_item" ><i class="fas fa-plus mr-2"></i>Add Another Item</a>
-                                  </div>
+                              <div class="row">
+                                <div class="col-md-6">
+                                  <a style="float: right;" href="javascript:void(0);" class="btn btn-primary block" id="add_new_item" ><i class="fas fa-plus mr-2"></i>Add Item</a>
                                 </div>
                               </div>
-                              <div id="newItem">
+                              <div class="newItem">
                               </div>
                             </div>
                           </div>
@@ -179,58 +118,12 @@
                               </h4>
                             </div>
                             <div id="collapseExtra" class="panel-collapse in collapse" style="">
-                              <div class="card-body">
-                                <div class="row">
-                                  <div class="col-md-6">
-                                    <div class="form-group">
-                                      <label for="exampleInputExtraArabicName">Extra Arabic Name</label>
-                                      <input type="text" class="form-control" id="exampleInputExtraArabicName" placeholder="Enter Extra Arabic Name">
-                                    </div>
-                                  </div>
-                                  <div class="col-md-6">
-                                    <div class="form-group">
-                                      <label for="exampleInputExtraEnglishName">Extra English Name</label>
-                                      <input type="text" class="form-control" id="exampleInputExtra EnglishName" placeholder="Enter Extra English Name">
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-md-12">
-                                    <div class="form-group">
-                                      <label for="exampleInputExtraArabicDescription">Extra Arabic Description</label>
-                                      <textarea class="form-control" id="exampleInputExtraArabicDescription" placeholder="Enter Extra Arabic Description"></textarea>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-md-12">
-                                    <div class="form-group">
-                                      <label for="exampleInputExtraEnglishDescription">Extra English Description</label>
-                                      <textarea class="form-control" id="exampleInputExtraEnglishDescription" placeholder="Enter Extra English Description"></textarea>
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-md-6">
-                                    <div class="form-group">
-                                      <label for="exampleInputExtraPrice">Extra Price</label>
-                                      <input type="text" class="form-control" id="exampleInputExtraPrice" placeholder="Enter Extra Price">
-                                    </div>
-                                  </div>
-                                  <div class="col-md-6">
-                                    <div class="form-group">
-                                      <label for="exampleInputExtraCalories">Extra Calories</label>
-                                      <input type="text" class="form-control" id="exampleInputExtraCalories" placeholder="Enter Extra Calories">
-                                    </div>
-                                  </div>
-                                </div>
-                                <div class="row">
-                                  <div class="col-md-6">
-                                    <a style="float: right;" href="javascript:void(0);" class="btn btn-primary block" id="add_new_extra" ><i class="fas fa-plus mr-2"></i>Add Another Extra</a>
-                                  </div>
+                              <div class="row">
+                                <div class="col-md-6">
+                                  <a style="float: right;" href="javascript:void(0);" class="btn btn-primary block" id="add_new_extra" ><i class="fas fa-plus mr-2"></i>Add Extra</a>
                                 </div>
                               </div>
-                              <div id="newExtra">
+                              <div class="newExtra">
                               </div>
                             </div>
                           </div>
@@ -265,13 +158,13 @@
           appendItem += '<div class="col-md-6">';
           appendItem += '<div class="form-group">';
           appendItem += '<label>Item Arabic Name'+item+'</label>';
-          appendItem += '<input type="text" class="form-control" placeholder="Enter Item Arabic Name">';
+          appendItem += '<input type="text" class="form-control" placeholder="Enter Item Arabic Name" name="Item['+rmoveItemID+'][name_ar]">';
           appendItem += '</div>';
           appendItem += '</div>';
           appendItem += '<div class="col-md-6">';
           appendItem += '<div class="form-group">';
           appendItem += '<label>Item English Name'+item+'</label>';
-          appendItem += '<input type="text" class="form-control" placeholder="Enter Item English Name">';
+          appendItem += '<input type="text" class="form-control" placeholder="Enter Item English Name" name="Item['+rmoveItemID+'][name_en]">';
           appendItem += '</div>';
           appendItem += '</div>';
           appendItem += '</div>';
@@ -279,7 +172,7 @@
           appendItem += '<div class="col-md-12">';
           appendItem +=  '<div class="form-group">';
           appendItem += '<label>Item Arabic Description'+item+'</label>';
-          appendItem += '<textarea class="form-control" placeholder="Enter Item Arabic Description"></textarea>';
+          appendItem += '<textarea class="form-control" placeholder="Enter Item Arabic Description" name="Item['+rmoveItemID+'][description_ar]"></textarea>';
           appendItem += '</div>';
           appendItem += '</div>';
           appendItem += '</div>';
@@ -287,7 +180,7 @@
           appendItem += '<div class="col-md-12">';
           appendItem +=  '<div class="form-group">';
           appendItem += '<label>Item English Description'+item+'</label>';
-          appendItem += '<textarea class="form-control" placeholder="Enter Item English Description"></textarea>';
+          appendItem += '<textarea class="form-control" placeholder="Enter Item English Description" name="Item['+rmoveItemID+'][description_en]"></textarea>';
           appendItem += '</div>';
           appendItem += '</div>';
           appendItem += '</div>';
@@ -295,13 +188,13 @@
           appendItem +=  '<div class="col-md-6">';
           appendItem += '<div class="form-group">';
           appendItem += '<label>Item Price'+item+'</label>';
-          appendItem += '<input type="text" class="form-control" placeholder="Enter Item Price">';
+          appendItem += '<input type="text" class="form-control" placeholder="Enter Item Price" name="Item['+rmoveItemID+'][price]">';
           appendItem += '</div>';
           appendItem += '</div>';
           appendItem += '<div class="col-md-6">';
           appendItem +=  '<div class="form-group">';
           appendItem += '<label>Item Calories'+item+'</label>';
-          appendItem += '<input type="text" class="form-control" placeholder="Enter Item Calories">';
+          appendItem += '<input type="text" class="form-control" placeholder="Enter Item Calories" name="Item['+rmoveItemID+'][calories]">';
           appendItem += '</div>';
           appendItem += '</div>';
           appendItem += '</div>';
@@ -311,7 +204,7 @@
           appendItem += '<label>Image'+item+'</label>';
           appendItem += '<div class="input-group">';
           appendItem += '<div class="custom-file">';
-          appendItem += '<input type="file" class="custom-file-input">';
+          appendItem += '<input type="file" class="custom-file-input" name="Item['+rmoveItemID+'][image]">';
           appendItem += '<label class="custom-file-label">Choose file'+item+'</label>';
           appendItem += '</div>';
           appendItem += '<div class="input-group-append">';
@@ -330,7 +223,7 @@
           appendItem += '<hr style="border-top: 1px solid #343a40;">';
 
           rmoveItemID++;
-      $("#newItem").last().append(appendItem);
+      $(".newItem").last().append(appendItem);
       item++; 
     });
     $("#add_new_extra").click(function (event) {
@@ -341,13 +234,13 @@
           appendExtra += '<div class="col-md-6">';
           appendExtra += '<div class="form-group">';
           appendExtra += '<label>Extra Arabic Name'+extra+'</label>';
-          appendExtra += '<input type="text" class="form-control" placeholder="Enter Extra Arabic Name">';
+          appendExtra += '<input type="text" class="form-control" placeholder="Enter Extra Arabic Name" name="Extra['+rmoveExtraID+'][name_ar]">';
           appendExtra += '</div>';
           appendExtra += '</div>';
           appendExtra += '<div class="col-md-6">';
           appendExtra += '<div class="form-group">';
           appendExtra += '<label>Extra English Name'+extra+'</label>';
-          appendExtra += '<input type="text" class="form-control" placeholder="Enter Extra English Name">';
+          appendExtra += '<input type="text" class="form-control" placeholder="Enter Extra English Name" name="Extra['+rmoveExtraID+'][name_en]">';
           appendExtra += '</div>';
           appendExtra += '</div>';
           appendExtra += '</div>';
@@ -355,7 +248,7 @@
           appendExtra += '<div class="col-md-12">';
           appendExtra +=  '<div class="form-group">';
           appendExtra += '<label>Extra Arabic Description'+extra+'</label>';
-          appendExtra += '<textarea class="form-control" placeholder="Enter Extra Arabic Description"></textarea>';
+          appendExtra += '<textarea class="form-control" placeholder="Enter Extra Arabic Description" name="Extra['+rmoveExtraID+'][description_ar]"></textarea>';
           appendExtra += '</div>';
           appendExtra += '</div>';
           appendExtra += '</div>';
@@ -363,7 +256,7 @@
           appendExtra += '<div class="col-md-12">';
           appendExtra +=  '<div class="form-group">';
           appendExtra += '<label>Extra English Description'+extra+'</label>';
-          appendExtra += '<textarea class="form-control" placeholder="Enter Extra English Description"></textarea>';
+          appendExtra += '<textarea class="form-control" placeholder="Enter Extra English Description" name="Extra['+rmoveExtraID+'][description_en]"></textarea>';
           appendExtra += '</div>';
           appendExtra += '</div>';
           appendExtra += '</div>';
@@ -371,13 +264,13 @@
           appendExtra +=  '<div class="col-md-6">';
           appendExtra += '<div class="form-group">';
           appendExtra += '<label>Extra Price'+extra+'</label>';
-          appendExtra += '<input type="text" class="form-control" placeholder="Enter Extra Price">';
+          appendExtra += '<input type="text" class="form-control" placeholder="Enter Extra Price" name="Extra['+rmoveExtraID+'][price]">';
           appendExtra += '</div>';
           appendExtra += '</div>';
           appendExtra += '<div class="col-md-6">';
           appendExtra +=  '<div class="form-group">';
           appendExtra += '<label>Extra Calories'+extra+'</label>';
-          appendExtra += '<input type="text" class="form-control" placeholder="Enter Extra Calories">';
+          appendExtra += '<input type="text" class="form-control" placeholder="Enter Extra Calories" name="Extra['+rmoveExtraID+'][calories]">';
           appendExtra += '</div>';
           appendExtra += '</div>';
           appendExtra += '</div>';
@@ -390,7 +283,7 @@
           appendExtra += '<hr style="border-top: 1px solid #343a40;">';
 
           rmoveExtraID++;
-      $("#newExtra").last().append(appendExtra);
+      $(".newExtra").last().append(appendExtra);
       extra++; 
     });       
   });
