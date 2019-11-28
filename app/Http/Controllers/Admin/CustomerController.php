@@ -54,7 +54,6 @@ class CustomerController extends Controller
             'second_phone' => 'nullable',
             'image' => 'nullable|image|max:5000',
         ]);
-
         if($request->filled('middle_name'))
         {
             $name = $request->first_name.' '.$request->middle_name.' '.$request->last_name;
@@ -80,7 +79,8 @@ class CustomerController extends Controller
             'first_phone' => $request->first_phone,
             'second_phone' => $request->second_phone,
             'image' => $image,
-            'password' => Hash::make($request->password)
+            'password' => Hash::make($request->password),
+            'created_by' => auth()->id()
         ]);
 
         if($request->has('Address'))
@@ -177,6 +177,7 @@ class CustomerController extends Controller
             'first_phone' => $request->first_phone,
             'second_phone' => $request->second_phone,
             'image' => $image,
+            'updated_by' => auth()->id()
         ]);
         if($request->has('Address'))
         {   

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use File;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Offer;
@@ -49,14 +50,23 @@ class OfferController extends Controller
             'image' => 'nullable|image|max:5000',
             'offer_type' => 'required',
         ]);
-        $attributes['branches'] = implode(",", $request->get('branches'));
+        $branches = implode(",", $request->get('branches'));
         if ($request->hasFile('image')) {
-            $attributes['image'] = $request->file('image')->store('offers', 'public');
+            $image = $request->file('image')->store('offers', 'public');
         }
+        $offer = Offer::create([
+            'title' => $request->title,
+            'service_type' => $request->service_type,
+            'date_from' => $request->date_from,
+            'date_to' => $request->date_to,
+            'branches' => $branches,
+            'description' => $request->description,
+            'image' => $image,
+            'offer_type' => $request->offer_type,
+            'created_by' => auth()->id()
+        ]);
 
-        $offer = Offer::create($attributes);
-
-        if($request->has('buy_quantity'))
+        if($request->has('buy_quantity') && $request->buy_quantity != null)
         {
             $buy_items = implode(",", $request->get('buy_items'));
             $get_items = implode(",", $request->get('get_items'));
@@ -71,8 +81,7 @@ class OfferController extends Controller
                 'offer_price' => $request->offer_price,
             ]);
         }
-
-        if($request->has('discount_quantity'))
+        if($request->has('discount_quantity') && $request->discount_quantity != null)
         {
             $items = implode(",", $request->get('items'));
             OfferDiscount::create([
@@ -108,9 +117,9 @@ class OfferController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Offer $offer)
     {
-        //
+        return view('admin.offer.edit' , compact('offer'));
     }
 
     /**
@@ -120,9 +129,76 @@ class OfferController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Offer $offer)
     {
-        //
+        $attributes = $request->validate([
+            'title' => 'required|min:3|max:20',
+            'service_type' => 'required',
+            'date_from' => 'required|date',
+            'date_to' => 'required|date',
+            'branches' => 'required|array',
+            'description' => 'nullable',
+            'image' => 'nullable|image|max:5000',
+            'offer_type' => 'required',
+        ]);
+        $branches = implode(",", $request->get('branches'));
+
+        if ($request->hasFile('image')) {
+            if (File::exists(storage_path('app/public/' . $offer->image))) {
+                File::delete(storage_path('app/public/' . $offer->image));
+            }
+            $image = $request->file('image')->store('offers', 'public');
+        }
+        else
+        {
+            $image = null;
+        }
+        $offer->update([
+            'title' => $request->title,
+            'service_type' => $request->service_type,
+            'date_from' => $request->date_from,
+            'date_to' => $request->date_to,
+            'branches' => $branches,
+            'description' => $request->description,
+            'image' => $image,
+            'offer_type' => $request->offer_type,
+            'updated_by' => auth()->id()
+        ]);
+        if($request->has('buy_quantity') && $request->buy_quantity != null)
+        {
+            $offer_buy_get = OfferBuyGet::where(['offer_id' => $offer->id])->first();
+            $buy_items = implode(",", $request->get('buy_items'));
+            $get_items = implode(",", $request->get('get_items'));
+            $offer_buy_get->update([
+                'offer_id' => $offer->id,
+                'buy_quantity' => $request->buy_quantity,
+                'buy_category_id' => $request->buy_category_id,
+                'buy_items' => $buy_items,
+                'get_quantity' => $request->get_quantity,
+                'get_category_id' => $request->get_category_id,
+                'get_items' => $get_items,
+                'offer_price' => $request->offer_price,
+            ]);
+        }
+
+        if($request->has('discount_quantity') && $request->discount_quantity != null)
+        {
+            $offer_discount = OfferDiscount::where(['offer_id' => $offer->id])->first();
+            $items = implode(",", $request->get('items'));
+            $offer_discount->update([
+                'offer_id' => $offer->id,
+                'quantity' => $request->discount_quantity,
+                'category_id' => $request->category_id,
+                'items' => $items,
+                'discount_type' => $request->discount_type,
+                'discount_value' => $request->discount_value,
+            ]);
+        }
+
+        return redirect('/offer')->with([
+            'type' => 'success',
+            'message' => 'Offer updated successfuly'
+        ]);
     }
 
     /**
@@ -131,8 +207,13 @@ class OfferController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Offer $offer)
     {
-        //
+        $offer->delete();
+
+        return redirect('/offer')->with([
+            'type' => 'error',
+            'message' => 'Offer deleted successfuly'
+        ]);
     }
 }

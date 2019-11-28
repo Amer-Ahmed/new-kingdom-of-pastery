@@ -17,6 +17,6 @@ class Branch extends Model
 
     public function workingDays()
     {
-        return $this->belongsToMany('App\Models\WorkingDay');
+        return $this->hasMany('App\Models\BranchWorkingDay');
     }
 }

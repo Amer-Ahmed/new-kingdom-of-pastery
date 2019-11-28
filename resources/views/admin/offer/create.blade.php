@@ -190,16 +190,16 @@
                     <div class="form-group">
                       <label for="exampleInputOfferPrice">Offer Price</label>
                       <select class="form-control" id="exampleInputOfferPrice" name="offer_price">
-                        <option>Select Offer Price</option>
-                        <option>Free</option>
-                        <option>20%</option>
-                        <option>30%</option>
-                        <option>40%</option>
-                        <option>50%</option>
-                        <option>60%</option>
-                        <option>70%</option>
-                        <option>80%</option>
-                        <option>90%</option>
+                        <option value="">Select Offer Price</option>
+                        <option value="0">Free</option>
+                        <option value="20">20%</option>
+                        <option value="30">30%</option>
+                        <option value="40">40%</option>
+                        <option value="50">50%</option>
+                        <option value="60">60%</option>
+                        <option value="70">70%</option>
+                        <option value="80">80%</option>
+                        <option value="90">90%</option>
                       </select>
                     </div>
                   </div>

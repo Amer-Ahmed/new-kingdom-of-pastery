@@ -16,9 +16,10 @@ class CreateBranchWorkingDaysTable extends Migration
         Schema::create('branch_working_days', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('branch_id')->index();
-            $table->unsignedBigInteger('working_days_id')->index();
+            $table->string('day');
+            $table->time('time_from');
+            $table->time('time_to');
             $table->foreign('branch_id')->references('id')->on('branches')->onDelete('cascade');
-            $table->foreign('working_days_id')->references('id')->on('working_days')->onDelete('cascade');
             $table->timestamps();
         });
     }

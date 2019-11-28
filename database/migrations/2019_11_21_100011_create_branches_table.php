@@ -24,9 +24,13 @@ class CreateBranchesTable extends Migration
             $table->string('second_phone')->nullable();
             $table->string('email');
             $table->string('service_type');
+            $table->unsignedBigInteger('created_by')->index()->nullable();
+            $table->unsignedBigInteger('updated_by')->index()->nullable();
+            $table->timestamps();
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
             $table->foreign('area_id')->references('id')->on('areas')->onDelete('cascade');
-            $table->timestamps();
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('updated_by')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

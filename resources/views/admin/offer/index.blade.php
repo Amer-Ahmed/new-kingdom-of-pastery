@@ -42,7 +42,6 @@
                      title="delete">
                       <i class="fas fa-trash"></i>
                   </a>
-                  <a href="#" class="btn btn-info btn-circle btn-sm"><i class="fas fa-user-secret" title="permission"></i></a>
                   <!-- Form Delete offer -->
                   <form
                       action="{{ route('admin.offer.destroy', $offer->id) }}"

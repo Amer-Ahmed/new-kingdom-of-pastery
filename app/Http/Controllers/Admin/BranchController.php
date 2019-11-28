@@ -43,6 +43,7 @@ class BranchController extends Controller
      */
     public function store(Request $request)
     {
+        return $request->get('WorkingDay');
         $attributes = $request->validate([
             'name_ar' => 'required|min:3|max:30',
             'name_en' => 'required|min:3|max:30',

@@ -20,7 +20,11 @@ class CreateCategoriesTable extends Migration
             $table->longText('description_ar')->nullable();
             $table->longText('description_en')->nullable();
             $table->string('image');
+            $table->unsignedBigInteger('created_by')->index()->nullable();
+            $table->unsignedBigInteger('updated_by')->index()->nullable();
             $table->timestamps();
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('updated_by')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

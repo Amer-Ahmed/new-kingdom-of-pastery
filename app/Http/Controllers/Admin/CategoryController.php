@@ -48,9 +48,16 @@ class CategoryController extends Controller
             'image' => 'required|image|max:5000',
         ]);
         if ($request->hasFile('image')) {
-            $attributes['image'] = $request->file('image')->store('categories', 'public');
+            $image = $request->file('image')->store('categories', 'public');
         }
-        $category = Category::create($attributes);
+        $category = Category::create([
+            'name_ar' => $request->name_ar,
+            'name_en' => $request->name_en,
+            'description_ar' => $request->description_ar,
+            'description_en' => $request->description_en,
+            'image' => $image,
+            'created_by' => auth()->id()
+        ]);
         if($request->has('Item'))
         {
             $items = $request->get('Item');
@@ -135,10 +142,17 @@ class CategoryController extends Controller
             if (File::exists(storage_path('app/public/' . $category->image))) {
                 File::delete(storage_path('app/public/' . $category->image));
             }
-            $attributes['image'] = $request->file('image')->store('categories', 'public');
+            $image = $request->file('image')->store('categories', 'public');
         }
 
-        $category->update($attributes);
+        $category->update([
+            'name_ar' => $request->name_ar,
+            'name_en' => $request->name_en,
+            'description_ar' => $request->description_ar,
+            'description_en' => $request->description_en,
+            'image' => $image,
+            'updated_by' => auth()->id()
+        ]);
         if($request->has('Item'))
         {   
             $items = Item::where(['category_id' => $category->id])->get();

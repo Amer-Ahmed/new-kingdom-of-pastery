@@ -25,7 +25,11 @@ class CreateCustomersTable extends Migration
             $table->string('first_phone');
             $table->string('second_phone')->nullable();
             $table->string('image')->nullable();
+            $table->unsignedBigInteger('created_by')->index()->nullable();
+            $table->unsignedBigInteger('updated_by')->index()->nullable();
             $table->timestamps();
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('updated_by')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

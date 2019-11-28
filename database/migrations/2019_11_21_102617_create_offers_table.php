@@ -23,7 +23,11 @@ class CreateOffersTable extends Migration
             $table->longText('description')->nullable();
             $table->string('image')->nullable();
             $table->string('offer_type');
+            $table->unsignedBigInteger('created_by')->index()->nullable();
+            $table->unsignedBigInteger('updated_by')->index()->nullable();
             $table->timestamps();
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('updated_by')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
